@@ -23,6 +23,16 @@ Route::get('/', function () {
     return view('welcome', ['nome' => $nome, 'idade' => $idade, 'arr' => $arr, 'nomes' => $nomes]);
 });
 
-Route::get('/contact', function () {
+Route::get('/contato', function () {
     return view('contact');
+});
+
+Route::get('/produtos', function () {
+    $busca = request('search');
+
+    return view('products', ['busca' => $busca]);
+});
+
+Route::get('/produto/{id?}', function ($id = 1) {
+    return view('product', ['id' => $id]);
 });
