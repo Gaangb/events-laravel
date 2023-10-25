@@ -19,9 +19,7 @@ use App\Http\Controllers\EventController;
 Route::get('/', [EventController::class, 'index']);
 Route::get('/events/create', [EventController::class, 'create']);
 
-Route::get('/contato', function () {
-    return view('contact');
-});
+Route::get('/contato', [EventController::class, 'contact']);
 
 Route::get('/produtos', function () {
     $busca = request('search');
