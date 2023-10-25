@@ -21,12 +21,12 @@ Route::get('/events/create', [EventController::class, 'create']);
 
 Route::get('/contato', [EventController::class, 'contact']);
 
-Route::get('/produtos', function () {
-    $busca = request('search');
+// Route::get('/produtos', function () {
+//     $busca = request('search');
 
-    return view('products', ['busca' => $busca]);
-});
+//     return view('products', ['busca' => $busca]);
+// });
 
-Route::get('/produto/{id?}', function ($id = 1) {
-    return view('product', ['id' => $id]);
-});
+// Route::get('/produto/{id?}', function ($id = 1) {
+//     return view('product', ['id' => $id]);
+// });
