@@ -9,9 +9,18 @@ use App\Models\Event;
 class EventController extends Controller
 {
     public function index(){
-        $events = Event::all(); // esse metodo pega todos os dados que estao no banco
+        $search = request('search');
 
-        return view('welcome', ['events' => $events]);
+        if($search){
+            $events = Event::where([
+                ['title', 'like', '%'.$search.'%'] // o like é pra dizer que pode ser uma busca de algo parecido. e a % pra dizer que pode ser algo antes ou depois
+            ])->get(); // é necessario o get pra que tenha algum item no $events. dizendo que quer pegar o dado
+        } else{
+            $events = Event::all(); // esse metodo pega todos os dados que estao no banco
+        }
+
+
+        return view('welcome', ['events' => $events, 'search' => $search]);
 
     }
 
@@ -24,9 +33,11 @@ class EventController extends Controller
         $event = new Event;
 
         $event ->title = $request->title;
+        $event ->date = $request->date;
         $event ->city = $request->city;
         $event ->private = $request->private;
         $event ->description = $request->description;
+        $event ->items = $request->items;
 
 
         if($request->hasFile("image") && $request->file("image")-> isValid()){
