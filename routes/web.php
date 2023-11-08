@@ -32,3 +32,13 @@ Route::get('/contato', [EventController::class, 'contact']);
 // Route::get('/produto/{id?}', function ($id = 1) {
 //     return view('product', ['id' => $id]);
 // });
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
