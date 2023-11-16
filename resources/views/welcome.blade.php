@@ -29,7 +29,7 @@
                 </div>
             </div>
             @endforeach
-            @if(count($events) == 0)
+            @if(count($events) == 0 && $search)
                 <p>Não foi possivel encontrar nenhum evento com {{ $search }}! <a href="/">Ver todos</a></p>
             @elseif(count($events) == 0)
                 <p>Não há eventos disponiveis</p>
